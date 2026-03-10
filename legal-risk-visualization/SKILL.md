@@ -298,6 +298,19 @@ graph TD
 
 #### 7a. 图形渲染步骤
 
+**画布尺寸动态计算规则：**
+
+Mermaid 图表渲染时需要根据节点数量动态调整画布尺寸，避免字体重叠：
+
+| 节点数量 | 建议画布尺寸 | 适用场景 |
+|----------|--------------|----------|
+| ≤ 8 个节点 | 1200 x 900 | 简单流程 |
+| 9-12 个节点 | 1600 x 1200 | 中等复杂度 |
+| 13-16 个节点 | 2000 x 1500 | 较复杂 |
+| > 16 个节点 | 2400 x 1800 | 高复杂度 |
+
+> **注意：** 中文文字比英文更宽，建议在上述基础上增加 20% 宽度。
+
 在输出目录中生成 4 张 PNG 图片：
 
 1. **第一层雷达图** → `risk_radar.png`
@@ -314,17 +327,23 @@ graph TD
    ```
 3. **第三层影响路径图** → `impact_pathway.png`
    - 将 graph TD Mermaid 代码写入 `impact_pathway.mmd`
-   - 调用渲染脚本：
+   - 调用渲染脚本（根据节点数量动态设置尺寸）：
    ```bash
+   # 影响路径图节点数量通常在 8-14 之间，建议使用 1600x1200
    python3 ~/.claude/skills/legal-risk-visualization/scripts/render_mermaid.py \
-     --input <输出目录>/impact_pathway.mmd --output <输出目录>/impact_pathway.png
+     --input <输出目录>/impact_pathway.mmd \
+     --output <输出目录>/impact_pathway.png \
+     --width 1600 --height 1200
    ```
 4. **第四层决策树** → `decision_tree.png`
    - 将 graph TD Mermaid 代码写入 `decision_tree.mmd`
-   - 调用渲染脚本：
+   - 调用渲染脚本（根据节点数量动态设置尺寸）：
    ```bash
+   # 决策树节点数量通常在 6-12 之间，建议使用 1400x1000
    python3 ~/.claude/skills/legal-risk-visualization/scripts/render_mermaid.py \
-     --input <输出目录>/decision_tree.mmd --output <输出目录>/decision_tree.png
+     --input <输出目录>/decision_tree.mmd \
+     --output <输出目录>/decision_tree.png \
+     --width 1400 --height 1000
    ```
 
 在 Markdown 报告中嵌入图片引用：`![图名](文件名.png)`
