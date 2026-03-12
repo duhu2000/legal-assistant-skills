@@ -14,6 +14,7 @@
 | `ad-compliance-review` | 审核广告文案或素材的广告法合规性 | Markdown 审核报告，可选导出 DOCX |
 | `food-label-review` | 审核预包装食品标签是否符合 GB 7718 / GB 28050 | Markdown 审核报告，可选导出 DOCX |
 | `legal-risk-visualization` | 将法律分析文本转为结构化风险图表 | 风险报告、雷达图、风险矩阵、影响路径图、决策树 |
+| `legal-job-search` | 法律AI求职助手，帮助法务/律师使用AI辅助求职 | 公司/律所调研报告、法律风险分析、网页简历、面试备忘录 |
 
 ## 技能概览
 
@@ -107,6 +108,23 @@
 - 同时面向法律团队和业务决策者
 - 支持输出 Markdown 报告和 PNG 图片
 
+### `legal-job-search`
+
+法律AI求职助手，采用「环境检测 → 信息收集 → 材料生成 → 输出确认」四阶段工作流。
+
+主要能力：
+
+- **公司/律所调研**：支持 Deep Research（秘塔AI搜索、Perplexity Pro）降级到 Web Search
+- **法律风险分析**：支持 MCP 工具级降级（被执行、失信、限消、终本、裁判文书）
+- **网页简历生成**：完全可配置的样式系统（商务精英/现代科技/极简清新）
+- **针对性材料**：简历调整策略 + 精美 Word 面试备忘录
+
+主要特点：
+
+- 工具级降级：每个 MCP 功能独立判断，不可用时单独降级
+- 双路径支持：法务岗位（公司调研框架）与律所岗位（律所调研框架）
+- 面试导向：所有材料直接支撑面试谈话
+
 ## 仓库结构
 
 ```text
@@ -118,7 +136,8 @@
 ├── law-to-markdown/
 ├── ad-compliance-review/
 ├── food-label-review/
-└── legal-risk-visualization/
+├── legal-risk-visualization/
+└── legal-job-search/
 ```
 
 单个技能目录通常包含以下内容：
