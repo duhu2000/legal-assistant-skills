@@ -22,8 +22,9 @@ This skill performs contract reviews by **adding comments only** (no edits to th
 
 When user requests contract review (e.g., "请审核这份合同" or "review this contract"):
 
-1. **Read contract** using available tools (pandoc preferred, fallback to direct XML)
-2. **Extract parties** and verify via QCC MCP (if enabled) or Web Search
+1. **Locate contract file** - If user provides only filename, search in common directories (~/Downloads, ~/.claude/downloads, current directory) to find the full path
+2. **Read contract** using available tools (pandoc preferred, fallback to direct XML) - MUST use the correct full path found in step 1
+3. **Extract parties** and verify via QCC MCP (if enabled) or Web Search
 3. **Generate structured outputs** (ALL of the following are REQUIRED):
    - Contract summary (合同概要) → `summary_text` parameter
    - Consolidated opinion (综合审核意见) → `opinion_text` parameter
