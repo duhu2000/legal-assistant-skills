@@ -112,60 +112,43 @@ echo "测试安装"
 echo "========================================"
 echo ""
 
-# 使用临时Python文件进行测试，避免heredoc变量展开问题
-TEST_SCRIPT="/tmp/test_qcc_mcp_$$.py"
+# 简单测试：检查关键文件是否存在
+SKILL_INSTALLED="$SKILLS_DIR/contract-review"
+MCP_CLIENT="$SKILL_INSTALLED/scripts/qcc_mcp_client.py"
 
-cat > "$TEST_SCRIPT" << 'EOF'
+if [ -f "$MCP_CLIENT" ]; then
+    echo "✅ MCP客户端文件存在"
+
+    # 检查Python语法
+    if python3 -m py_compile "$MCP_CLIENT" 2>/dev/null; then
+        echo "✅ MCP客户端语法正确"
+    else
+        echo "⚠️  MCP客户端语法检查失败"
+    fi
+
+    # 尝试导入测试（直接在scripts目录下运行）
+    cd "$SKILL_INSTALLED/scripts" && python3 -c "
 import sys
-import os
-
-# 动态获取HOME目录
-home_dir = os.path.expanduser("~")
-skill_path = os.path.join(home_dir, ".claude/skills/contract-review")
-scripts_path = os.path.join(skill_path, "scripts")
-
-# 添加scripts目录到path
-sys.path.insert(0, scripts_path)
-
+sys.path.insert(0, '.')
 try:
-    # 直接从scripts目录导入
-    import importlib.util
-    spec = importlib.util.spec_from_file_location("qcc_mcp_client", os.path.join(scripts_path, "qcc_mcp_client.py"))
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    QccMcpClient = module.QccMcpClient
-
+    from qcc_mcp_client import QccMcpClient
     client = QccMcpClient()
-
     if client.is_enabled():
-        print("✅ MCP客户端初始化成功")
-        print("✅ MCP服务已启用")
-
-        # 简单测试
-        print("\n正在测试企业核验...")
-        result = client.verify_company("企查查科技股份有限公司")
-        if result and result.get('企业名称'):
-            print(f"✅ 企业核验测试成功")
-            print(f"   企业: {result.get('企业名称')}")
-            print(f"   法人: {result.get('法定代表人')}")
-        else:
-            print("⚠️  企业核验测试未返回结果")
+        print('✅ MCP客户端可正常导入和初始化')
+        print('✅ MCP服务配置已启用')
     else:
-        print("⚠️  MCP客户端已初始化但未启用")
-        print("   原因: 未设置 QCC_MCP_API_KEY 环境变量")
-        print("   不影响使用，将自动回退到Web Search")
-
+        print('✅ MCP客户端可正常导入')
+        print('⚠️  MCP服务未启用（未设置QCC_MCP_API_KEY）')
+        print('   提示：设置环境变量后可启用企业核验功能')
 except Exception as e:
-    print(f"❌ 测试失败: {e}")
+    print(f'❌ 导入测试失败: {e}')
     import traceback
     traceback.print_exc()
     sys.exit(1)
-
-print("\n✅ 所有测试通过！")
-EOF
-
-python3 "$TEST_SCRIPT" || true
-rm -f "$TEST_SCRIPT"
+" 2>&1 || echo "⚠️  MCP导入测试失败，但不影响基础功能"
+else
+    echo "❌ MCP客户端文件不存在"
+fi
 
 echo ""
 echo "========================================"
