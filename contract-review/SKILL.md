@@ -18,6 +18,23 @@ This skill performs contract reviews by **adding comments only** (no edits to th
 
 ## Workflow
 
+### Execution Steps (MUST FOLLOW)
+
+When user requests contract review (e.g., "请审核这份合同" or "review this contract"):
+
+1. **Read contract** using available tools (pandoc preferred, fallback to direct XML)
+2. **Extract parties** and verify via QCC MCP (if enabled) or Web Search
+3. **Generate structured outputs** (ALL of the following are REQUIRED):
+   - Contract summary (合同概要) → `summary_text` parameter
+   - Consolidated opinion (综合审核意见) → `opinion_text` parameter
+   - Business flowchart (业务流程图) → `flowchart_mermaid` parameter
+4. **Review contract clauses** using four-layer model (Layer 0-3)
+5. **Add comments** to the document with structured format
+6. **Execute workflow** via `review_contract()` with ALL generated content
+7. **Report results** to user with all output file locations
+
+### Technical Steps
+
 1. Unpack the contract (.docx) for XML operations
 2. Read contract text (pandoc or XML)
 3. Extract and verify contracting parties (Layer 0)
