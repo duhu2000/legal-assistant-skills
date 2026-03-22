@@ -1,38 +1,70 @@
 #!/bin/bash
-# 企查查MCP集成安装脚本
-# 用于在现有 legal-assistant-skills 基础上添加 QCC MCP 支持
+# 企查查MCP合同审核安装脚本
+# 一键安装完整的合同审核 + MCP增强功能
 
 set -e
 
 SKILLS_DIR="${HOME}/.claude/skills"
-QCC_MCP_URL="https://raw.githubusercontent.com/duhu2000/legal-assistant-skills/main/contract-review"
+REPO_URL="https://github.com/duhu2000/legal-assistant-skills.git"
+TEMP_DIR="/tmp/legal-assistant-skills-$$"
 
 echo "========================================"
-echo "企查查MCP集成安装"
+echo "企查查MCP合同审核安装"
 echo "========================================"
 echo ""
 
-# 检查是否已安装 contract-review skill
-if [ ! -d "$SKILLS_DIR/contract-review" ]; then
-    echo "❌ 错误: 未找到 contract-review skill"
-    echo "请先安装 legal-assistant-skills:"
-    echo "  bash <(curl -sL https://raw.githubusercontent.com/zh-xx/legal-assistant-skills/main/install_legal_skills.sh)"
+# 检查依赖
+echo "检查依赖环境..."
+
+# 检查 Python
+if ! command -v python3 &> /dev/null; then
+    echo "❌ 错误: 未找到 python3"
+    echo "请先安装 Python 3.9+"
     exit 1
 fi
 
-echo "✅ 找到 contract-review skill"
+PYTHON_VERSION=$(python3 --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+echo "✅ Python版本: $PYTHON_VERSION"
+
+# 检查 git
+if ! command -v git &> /dev/null; then
+    echo "❌ 错误: 未找到 git"
+    echo "请先安装 git"
+    exit 1
+fi
+echo "✅ Git已安装"
+
+# 创建 skills 目录
+mkdir -p "$SKILLS_DIR"
+echo "✅ Skills目录: $SKILLS_DIR"
 echo ""
 
-# 下载 QCC MCP 客户端
-echo "正在下载企查查MCP客户端..."
-curl -sL "$QCC_MCP_URL/scripts/qcc_mcp_client.py" \
-    -o "$SKILLS_DIR/contract-review/scripts/qcc_mcp_client.py" \
-    || echo "⚠️  下载失败，请手动下载"
+# 克隆仓库
+echo "正在下载合同审核Skill..."
+if [ -d "$TEMP_DIR" ]; then
+    rm -rf "$TEMP_DIR"
+fi
+git clone --depth 1 "$REPO_URL" "$TEMP_DIR" 2>&1 | grep -v "^hint:" || true
+echo "✅ 下载完成"
+echo ""
 
-# 设置执行权限
-chmod +x "$SKILLS_DIR/contract-review/scripts/qcc_mcp_client.py" 2>/dev/null || true
+# 安装 contract-review skill
+echo "正在安装 contract-review skill..."
+if [ -d "$SKILLS_DIR/contract-review" ]; then
+    echo "⚠️  检测到已存在 contract-review，正在备份..."
+    mv "$SKILLS_DIR/contract-review" "$SKILLS_DIR/contract-review.bak.$(date +%Y%m%d%H%M%S)"
+fi
 
-echo "✅ QCC MCP客户端安装完成"
+cp -r "$TEMP_DIR/contract-review" "$SKILLS_DIR/"
+echo "✅ contract-review 安装完成"
+echo ""
+
+# 清理临时目录
+rm -rf "$TEMP_DIR"
+
+# 设置权限
+chmod -R +x "$SKILLS_DIR/contract-review/scripts"/*.py 2>/dev/null || true
+echo "✅ 权限设置完成"
 echo ""
 
 # 检查环境变量
@@ -118,15 +150,20 @@ echo "========================================"
 echo "安装完成"
 echo "========================================"
 echo ""
-echo "文件位置:"
+echo "📁 文件位置:"
+echo "  - Skill目录: $SKILLS_DIR/contract-review/"
 echo "  - MCP客户端: $SKILLS_DIR/contract-review/scripts/qcc_mcp_client.py"
 echo "  - 使用指南: $SKILLS_DIR/contract-review/README_QCC_MCP.md"
 echo ""
-echo "使用说明:"
-echo "  1. 确保已设置 QCC_MCP_API_KEY 环境变量"
-echo "  2. 正常使用 contract-review skill"
-echo "  3. 系统将自动使用MCP进行企业核验（如果启用）"
+echo "🚀 快速开始:"
 echo ""
-echo "如需帮助，请查看:"
-echo "  cat $SKILLS_DIR/contract-review/README_QCC_MCP.md"
+echo "  1. 在Claude Code中使用:"
+echo "     /skills load contract-review"
+echo ""
+echo "  2. 或者直接输入:"
+echo "     请审核这份合同: /path/to/contract.docx"
+echo ""
+echo "📖 文档:"
+echo "  - GitHub: https://github.com/duhu2000/legal-assistant-skills"
+echo "  - MCP官网: https://mcp.qcc.com"
 echo ""
