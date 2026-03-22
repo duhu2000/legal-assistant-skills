@@ -5,7 +5,7 @@
 set -e
 
 SKILLS_DIR="${HOME}/.claude/skills"
-QCC_MCP_URL="https://raw.githubusercontent.com/YOUR_USERNAME/legal-assistant-skills/main/contract-review"
+QCC_MCP_URL="https://raw.githubusercontent.com/duhu2000/legal-assistant-skills/main/contract-review"
 
 echo "========================================"
 echo "企查查MCP集成安装"
