@@ -39,6 +39,50 @@ mkdir -p "$SKILLS_DIR"
 echo "✅ Skills目录: $SKILLS_DIR"
 echo ""
 
+# 创建 MCP 配置文件
+echo "正在配置 MCP 服务器..."
+CLAUDE_DIR="${HOME}/.claude"
+MCP_CONFIG="$CLAUDE_DIR/.mcp.json"
+
+if [ -f "$MCP_CONFIG" ]; then
+    echo "⚠️  检测到已存在 MCP 配置，正在备份..."
+    cp "$MCP_CONFIG" "$MCP_CONFIG.bak.$(date +%Y%m%d%H%M%S)"
+fi
+
+cat > "$MCP_CONFIG" << 'MCPJSONEOF'
+{
+  "mcpServers": {
+    "qcc-company": {
+      "url": "https://mcp.qcc.com/data/company/stream",
+      "headers": {
+        "Authorization": "Bearer ${QCC_MCP_API_KEY}"
+      }
+    },
+    "qcc-risk": {
+      "url": "https://mcp.qcc.com/data/risk/stream",
+      "headers": {
+        "Authorization": "Bearer ${QCC_MCP_API_KEY}"
+      }
+    },
+    "qcc-ipr": {
+      "url": "https://mcp.qcc.com/data/ipr/stream",
+      "headers": {
+        "Authorization": "Bearer ${QCC_MCP_API_KEY}"
+      }
+    },
+    "qcc-operation": {
+      "url": "https://mcp.qcc.com/data/operation/stream",
+      "headers": {
+        "Authorization": "Bearer ${QCC_MCP_API_KEY}"
+      }
+    }
+  }
+}
+MCPJSONEOF
+
+echo "✅ MCP 配置文件已创建: $MCP_CONFIG"
+echo ""
+
 # 克隆仓库
 echo "正在下载合同审核Skill..."
 if [ -d "$TEMP_DIR" ]; then
@@ -166,15 +210,29 @@ fi
 
 echo ""
 echo "========================================"
+echo "⚠️  重要：安装后步骤"
+echo "========================================"
+echo ""
+echo -e "\033[1;33m必须重启 Claude Code 以加载 MCP 配置！\033[0m"
+echo ""
+echo "步骤 1: 完全退出 Claude Code"
+echo "步骤 2: 确保已设置 QCC_MCP_API_KEY:"
+echo "       export QCC_MCP_API_KEY='your_api_key_here'"
+echo "步骤 3: 重启 Claude Code"
+echo "步骤 4: 验证 MCP 服务器已加载:"
+echo "       你应该能看到 'qcc-company', 'qcc-risk' 等工具"
+echo ""
+echo "========================================"
 echo "安装完成"
 echo "========================================"
 echo ""
 echo "📁 文件位置:"
 echo "  - Skill目录: $SKILLS_DIR/contract-review/"
+echo "  - MCP配置: $CLAUDE_DIR/.mcp.json"
 echo "  - MCP客户端: $SKILLS_DIR/contract-review/scripts/qcc_mcp_client.py"
 echo "  - 使用指南: $SKILLS_DIR/contract-review/README_QCC_MCP.md"
 echo ""
-echo "🚀 快速开始:"
+echo "🚀 快速开始（重启 Claude 后）:"
 echo ""
 echo "  1. 在Claude Code中使用:"
 echo "     /skills load contract-review"

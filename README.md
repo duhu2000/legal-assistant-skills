@@ -128,14 +128,27 @@ source ~/.zshrc
 ### 一键安装
 
 ```bash
-# 3. 运行安装脚本
+# 3. 运行安装脚本（自动配置 MCP）
 bash <(curl -sL https://raw.githubusercontent.com/duhu2000/legal-assistant-skills/main/install_qcc_mcp.sh)
+```
+
+### 重要：重启 Claude Code
+
+⚠️ **必须完全退出并重新启动 Claude Code**，否则 MCP 配置不会生效。
+
+```bash
+# 4. 重启 Claude Code
+# - 完全退出 Claude Code（Cmd+Q 或关闭终端）
+# - 重新启动 Claude Code
+
+# 5. 验证 MCP 配置
+# 你应该能看到可用的 MCP 工具：qcc-company, qcc-risk, qcc-ipr, qcc-operation
 ```
 
 ### 开始使用
 
 ```bash
-# 4. 在Claude Code中
+# 6. 在Claude Code中
 # 请审核这份合同: /path/to/contract.docx
 ```
 
