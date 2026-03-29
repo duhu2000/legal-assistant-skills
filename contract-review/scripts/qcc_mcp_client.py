@@ -40,7 +40,7 @@ class QccMcpClient:
     SERVICES = {
         "company": {
             "name": "企业信息",
-            "url": "https://mcp.qcc.com/data/company/stream",
+            "url": "https://agent.qcc.com/mcp/company/stream",
             "tools": [
                 "get_company_registration_info",   # 企业工商信息
                 "get_shareholder_info",             # 股东信息
@@ -58,7 +58,7 @@ class QccMcpClient:
         },
         "risk": {
             "name": "风险信息",
-            "url": "https://mcp.qcc.com/data/risk/stream",
+            "url": "https://agent.qcc.com/mcp/risk/stream",
             "tools": [
                 # 核心风险（18类）
                 "get_dishonest_info",               # 失信信息（老赖）
@@ -100,7 +100,7 @@ class QccMcpClient:
         },
         "ipr": {
             "name": "知识产权",
-            "url": "https://mcp.qcc.com/data/ipr/stream",
+            "url": "https://agent.qcc.com/mcp/ipr/stream",
             "tools": [
                 "get_trademark_info",               # 商标
                 "get_patent_info",                  # 专利
@@ -112,7 +112,7 @@ class QccMcpClient:
         },
         "operation": {
             "name": "经营信息",
-            "url": "https://mcp.qcc.com/data/operation/stream",
+            "url": "https://agent.qcc.com/mcp/operation/stream",
             "tools": [
                 "get_qualifications",               # 资质证书
                 "get_administrative_license",       # 行政许可
