@@ -55,7 +55,7 @@
 
 ### 步骤1：申请企查查MCP API Key
 
-1. 访问企查查MCP开放平台：https://mcp.qcc.com
+1. 访问企查查MCP开放平台：https://agent.qcc.com
 2. 注册账号并申请API访问权限
 3. 获取API Key（格式类似：`M81hQFzTBO4lSS9YRk9BSD...`）
 
@@ -322,7 +322,7 @@ export QCC_MCP_API_KEY="your_api_key_here"
 
 **解决**:
 1. 检查API Key有效性
-2. 测试网络连通性：`curl https://mcp.qcc.com`
+2. 测试网络连通性：`curl https://agent.qcc.com`
 3. 查看错误信息中的具体原因
 
 ### 问题3：未从合同中提取到企业名称
@@ -342,7 +342,7 @@ export QCC_MCP_API_KEY="your_api_key_here"
 
 ## 技术支持
 
-- 企查查MCP官方文档：https://mcp.qcc.com/docs
+- 企查查MCP官方文档：https://agent.qcc.com/docs
 - API问题请联系企查查技术支持
 - Skill使用问题请提交GitHub Issue
 

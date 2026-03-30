@@ -165,7 +165,7 @@ class QccMcpConnector:
         if not self.api_key:
             raise ValueError(
                 "QCC MCP API Key未配置。请设置环境变量 QCC_MCP_API_KEY "
-                "或访问 https://mcp.qcc.com 申请"
+                "或访问 https://agent.qcc.com 申请"
             )
         self.session = requests.Session()
         self.session.headers.update({

@@ -214,7 +214,7 @@ When QCC MCP is enabled, the skill automatically:
 ### Setup Instructions
 
 1. **Apply for QCC MCP API Key**
-   - Visit [QiChaCha MCP Portal](https://mcp.qcc.com) to apply for access
+   - Visit [QiChaCha MCP Portal](https://agent.qcc.com) to apply for access
    - Obtain your API key
 
 2. **Set Environment Variable**
@@ -247,7 +247,7 @@ When QCC MCP is enabled, the skill automatically:
 - **Comments missing in Word**: run `doc.verify_comments()` and re-save
 - **find_paragraph fails**: shorten search text; confirm actual paragraph text
 - **Mermaid render fails**: ensure `mmdc` installed; use Chrome path or Puppeteer config
-- **QCC MCP not working**: verify `QCC_MCP_API_KEY` is set; check network connectivity to https://mcp.qcc.com
+- **QCC MCP not working**: verify `QCC_MCP_API_KEY` is set; check network connectivity to https://agent.qcc.com
 
 ## Examples
 

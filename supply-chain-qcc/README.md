@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
-[![MCP](https://img.shields.io/badge/MCP-QCC%20企查查-orange.svg)](https://mcp.qcc.com)
+[![MCP](https://img.shields.io/badge/MCP-QCC%20企查查-orange.svg)](https://agent.qcc.com)
 [![Claude](https://img.shields.io/badge/Claude%20Code-Compatible-purple.svg)](https://claude.ai)
 
 ---
@@ -80,7 +80,7 @@ QCC MCP增强版: 供应商评估
 # 1. 安装Python依赖（只需一次）
 pip3 install requests
 
-# 2. 配置企查查MCP Key（从 https://mcp.qcc.com 申请）
+# 2. 配置企查查MCP Key（从 https://agent.qcc.com 申请）
 # 方式一：临时设置（当前终端有效）
 export QCC_MCP_API_KEY="your_key_here"
 
@@ -428,7 +428,7 @@ financial_indicators = client.get_financial_indicators("供应商名称")
 
 ### 联系方式
 - GitHub Issues
-- MCP官网：https://mcp.qcc.com
+- MCP官网：https://agent.qcc.com
 - Email: duhu@qcc.com
 
 ---
@@ -444,7 +444,7 @@ Apache License 2.0
 ## 🙏 致谢
 
 - 原版作者 Panaversity 的优秀供应链技能框架
-- [企查查MCP](https://mcp.qcc.com) - 首个Agent-Native企业数据基座
+- [企查查MCP](https://agent.qcc.com) - 首个Agent-Native企业数据基座
 - [Anthropic](https://anthropic.com) 的 Claude Code
 
 ---
