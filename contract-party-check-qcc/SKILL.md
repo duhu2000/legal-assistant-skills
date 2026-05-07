@@ -1,5 +1,5 @@
 ---
-name: contract-party-check-qcc
+name: 合同相对方主体核验-contract-party-check-qcc
 description: >
   合同相对方主体核验 SKILL · 企查查 MCP V2.0 增强版。
   合同签署前的主体快速核验工具，输出"A/B/C/D"四档评级，D 级直接拒绝签约。

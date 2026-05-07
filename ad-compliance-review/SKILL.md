@@ -1,5 +1,5 @@
 ---
-name: ad-compliance-review
+name: 广告合规审查-ad-compliance-review
 description: >
   广告合规审核 SKILL。
   对广告文案、素材执行"四阶段流水线审核"，识别广告内容的违法违规风险，输出"🟢 合规 / 🟡 整改可发布 / 🔴 高风险禁发"三档结论 + 结构化问题清单 + 修订建议。

@@ -1,5 +1,5 @@
 ---
-name: license-validation-qcc
+name: 合规资质有效性验证-license-validation-qcc
 description: >
   合规资质有效性验证 SKILL · 企查查 MCP V2.0 增强版。
   企业合规资质的真实性与有效期批量核验工具，输出"✅ 合规 / ⚠️ 有到期风险 / ❌ 无效"三档评级。

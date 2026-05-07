@@ -1,5 +1,5 @@
 ---
-name: contract-review
+name: 合同核验-contract-review
 description: >
   合同审核 SKILL · 企查查双模式（CLI + MCP）增强版。
   通过"仅添加批注"的方式审查合同文本（不修改原文），采用四层审核模型完成合同主体核验 × 内容合规审查双重检验，输出带批注合同 + 合同概要 + 综合审核意见 + 业务流程图。

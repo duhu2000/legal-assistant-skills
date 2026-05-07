@@ -1,5 +1,5 @@
 ---
-name: ip-asset-inventory-qcc
+name: 知产资产清单-ip-asset-inventory-qcc
 description: >
   知产资产清单 SKILL · 企查查 MCP V2.0 增强版。
   科技企业投资、并购、IPO 申报前的知识产权资产核查工具，输出"S/A/B/C"四档 IP 资产评级。

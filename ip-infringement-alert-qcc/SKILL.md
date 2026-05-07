@@ -1,5 +1,5 @@
 ---
-name: ip-infringement-alert-qcc
+name: 知产侵权预警-ip-infringement-alert-qcc
 description: >
   知产侵权预警 SKILL · 企查查 MCP V2.0 增强版。
   产品上市、合作签约或新业务推广前的知识产权侵权风险预警工具，输出"🔴 高侵权风险 / 🟡 中 / 🟢 低"三档评级。

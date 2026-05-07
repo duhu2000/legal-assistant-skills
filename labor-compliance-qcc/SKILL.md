@@ -1,5 +1,5 @@
 ---
-name: labor-compliance-qcc
+name: 劳动合规风险排查-labor-compliance-qcc
 description: >
   劳动合规风险排查 SKILL · 企查查 MCP V2.0 增强版。
   企业用工合规系统性排查工具，输出"合规 A/B/C/D"四档评级，对应"标准准入 / 加强监测 / 附条件 / 拒绝"四种处置。
