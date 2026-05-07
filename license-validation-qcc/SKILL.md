@@ -2,9 +2,18 @@
 name: license-validation-qcc
 description: >
   合规资质有效性验证 SKILL · 企查查 MCP V2.0 增强版。
-  企业合规资质的真实性与有效期核查工具。V2.0 新增历史行政许可追溯能力，识别已过期或已撤销的资质。
+  企业合规资质的真实性与有效期批量核验工具，输出"✅ 合规 / ⚠️ 有到期风险 / ❌ 无效"三档评级。
 
-  适用场景：法务 / 合规 / 律师 / 知产管理场景。
+  核心能力：
+  - **资质证书现状核查**（`mcp__qcc-operation__get_qualifications`）—— ISO / CMMI / DCMM / ITSS / 行业专项资质完整性扫描
+  - **行政许可清单**（`mcp__qcc-operation__get_administrative_license`）—— 经营许可证、专项许可证状态识别
+  - **电信业务许可**（`mcp__qcc-operation__get_telecom_license`）—— ICP / 增值电信业务专项许可有效性
+  - **V2.0 历史行政许可追溯**（`mcp__qcc-history__get_historical_admin_license`）—— 识别已过期、已撤销、已被新证替代的历史资质
+  - **税收信用 + 海关信用**（`mcp__qcc-operation__get_credit_evaluation` + `get_import_export_credit`）—— 政府监管视角的合规背书
+  - **资质到期预警**（12 个月内到期清单）—— 主动提醒续证窗口，避免业务中断
+  - 央行 / 网信办备案核验（`mcp__qcc-ipr__get_internet_service_info`）—— 算法备案 / ICP 备案 / APP 备案
+
+  适用场景：合作方准入与年度续约前批量核验 / 供应商资质年审 / 合规部门年度复核 / 招投标资质合规审查 / 政企客户合规背调。
 
   使用方式：/license-validation 企业名称 [--format md|docx|pptx]
 

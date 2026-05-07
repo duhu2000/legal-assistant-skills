@@ -2,9 +2,17 @@
 name: ip-infringement-alert-qcc
 description: >
   知产侵权预警 SKILL · 企查查 MCP V2.0 增强版。
-  产品上市 / 合作签约前的 IP 侵权风险预警工具。V2.0 新增历史商标相似挖掘能力。
+  产品上市、合作签约或新业务推广前的知识产权侵权风险预警工具，输出"🔴 高侵权风险 / 🟡 中 / 🟢 低"三档评级。
 
-  适用场景：法务 / 合规 / 律师 / 知产管理场景。
+  核心能力：
+  - **目标企业 IP 组合扫描**（`mcp__qcc-ipr__get_patent_info` + `get_trademark_info` + `get_software_copyright_info` + `get_copyright_work_info`）—— 完整 IP 资产清单
+  - **商标近似检索**（含文字 + 图形）—— 与本方拟用商标做相似度比对，识别冲突风险
+  - **专利权利要求覆盖范围分析**（`get_patent_info` + 权要解析）—— 评估目标专利对本方产品的覆盖深度
+  - **V2.0 历史商标相似挖掘**（`mcp__qcc-history__get_historical_trademark`）—— 把搜索范围扩大到已失效 / 已转让的历史商标，避免后悔型侵权
+  - **IP 诉讼历史**（`mcp__qcc-risk__get_judicial_documents` 案由按"侵害商标权 / 侵害专利权 / 侵害著作权"过滤）—— 识别"诉讼狂"型权利人
+  - 知产质押状态（`mcp__qcc-ipr__get_ipr_pledge`）—— 已质押 IP 的复杂权属关系
+
+  适用场景：新产品上市前 IP 风险预审 / 合作签约前知产尽调 / 品牌推广前商标冲突排查 / 法务团队主动排查规避措施。
 
   使用方式：/ip-infringement-alert 企业名称 [--format md|docx|pptx]
 
