@@ -148,9 +148,9 @@ metadata:
 ### 维度四：法代与实控人个人偿债力
 
 工具链：
-- `mcp__qcc-executive__get_personnel_dishonest` / `get_personnel_judgment_debtor` / `get_personnel_high_consumption_ban` / `get_personnel_exit_restriction` — 个人当前风险
-- `mcp__qcc-executive__get_personnel_controlled_companies` / `get_personnel_investments` — 个人其他资产
-- `mcp__qcc-executive__get_personnel_historical_dishonest` — 个人历史失信
+- `mcp__qcc-executive__get_executive_dishonest` / `get_executive_judgment_debtor` / `get_executive_high_consumption_ban` / `get_executive_exit_restriction` — 个人当前风险
+- `mcp__qcc-executive__get_executive_controlled_companies` / `get_executive_investments` — 个人其他资产
+- `mcp__qcc-executive__get_executive_historical_dishonest` — 个人历史失信
 
 分析要点：
 
