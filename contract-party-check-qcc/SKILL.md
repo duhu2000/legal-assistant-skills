@@ -8,6 +8,7 @@ description: >
   - **工商登记三项一致性核验**（`mcp__qcc-company__verify_company_accuracy` + `get_company_registration_info`）—— 企业名 + USCC + 法代三项交叉匹配，登记状态（吊销 / 注销 / 异常）一票否决
   - **V2.0 历史工商变更追溯**（`mcp__qcc-history__get_historical_registration` + `get_historical_legal_rep`）—— 识别频繁变更注册地址 / 频繁更换法代的壳公司
   - **司法风险快扫**（失信 `get_dishonest_info` / 限高 `get_high_consumption_restriction` / 被执行 `get_judgment_debtor_info` / 股权冻结 `get_equity_freeze` / 经营异常 `get_business_exception`）—— 5 项核心红线
+**【个人风险先扫后钻 · 2026-06-08 · 对齐 A 层铁律 5 个人维度】** 对每位目标人（法代/实控人/董监高），**先调 `mcp__qcc-executive__get_executive_risk_scan`（searchKey=企业完整名/USCC + personName=姓名，双锚定）一次返回其 18 项个人风险维度命中计数 → 仅对 count>0 维度下钻下列对应 `get_executive_*` 原子工具取明细**；count=0 跳过。❌ 禁止不先扫、逐个散弹枪调个人风险原子。单人工具：多人则逐人各扫一次，不对全体董监高自动循环。
   - **V2.0 法代个人风险**（`mcp__qcc-executive__get_executive_dishonest` + `get_executive_high_consumption_ban` + `get_executive_exit_restriction`）—— 法代当前失信 / 限高 / 限出境直接触发签约风险
   - **经营活跃度辅助判定**（参保人数 + 招投标 + 招聘）—— 区分"形式存续 vs 实质经营"
   - 关联企业网络扫描（`mcp__qcc-executive__get_executive_controlled_companies`）—— 识别合同方背后真实集团关系

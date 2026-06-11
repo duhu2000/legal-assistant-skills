@@ -147,6 +147,7 @@ metadata:
 
 ### 维度四：法代与实控人个人偿债力
 
+**【个人风险先扫后钻 · 2026-06-08 · 对齐 A 层铁律 5 个人维度】** 对每位目标人（法代/实控人/董监高），**先调 `mcp__qcc-executive__get_executive_risk_scan`（searchKey=企业完整名/USCC + personName=姓名，双锚定）一次返回其 18 项个人风险维度命中计数 → 仅对 count>0 维度下钻下列对应 `get_executive_*` 原子工具取明细**；count=0 跳过。❌ 禁止不先扫、逐个散弹枪调个人风险原子。单人工具：多人则逐人各扫一次，不对全体董监高自动循环。
 工具链：
 - `mcp__qcc-executive__get_executive_dishonest` / `get_executive_judgment_debtor` / `get_executive_high_consumption_ban` / `get_executive_exit_restriction` — 个人当前风险
 - `mcp__qcc-executive__get_executive_controlled_companies` / `get_executive_investments` — 个人其他资产
