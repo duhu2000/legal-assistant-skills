@@ -34,7 +34,7 @@ metadata:
 ## 工作流维度
 
 1. 劳动仲裁与诉讼（qcc-risk get_service_announcement 劳动仲裁）
-2. 社保欠缴 / 税务违法（get_tax_arrears / get_tax_violation）
+2. 社保欠缴 / 税务违法（get_tax_arrears_notice / get_tax_violation）
 3. 行政处罚（劳动类）
 4. **V2.0 新能力：历史劳动仲裁**（qcc-history —— 识别连年劳动纠纷型企业）
 5. IPO 前劳动专项审查（招聘规模 × 社保合规）
